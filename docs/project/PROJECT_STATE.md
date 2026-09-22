@@ -86,33 +86,39 @@ Success means we can describe a 60–90 minute session from beginning to end and
 - Simulation Model v0.1 and World & Time Scale v0.1 accepted and merged (PR #3).
 - Reference model now uses configurable grid geography, sparse demes, deterministic staged updates, and a fixed 100-year initial tick hypothesis.
 
+## Recently completed
+
+- Session Arc v0.2 accepted and merged (PR #1).
+- Simulation Model v0.1 and World & Time Scale v0.1 accepted and merged (PR #3).
+- Ecology Loop v0.1 accepted and merged (PR #4).
+
 ## Current design review
 
-Draft document on branch `design/ecology-loop-v0.1`:
+Draft document on branch `design/evolution-speciation-v0.1`:
 
-- `docs/design/ECOLOGY_LOOP.md`
+- `docs/design/EVOLUTION_SPECIATION.md`
 
-Current ecology proposal:
+Current evolution proposal:
 
-- producer biomass → herbivores → predators;
-- smooth climate suitability rather than hard biome gates;
-- stable producer regeneration toward environmental capacity;
-- deterministic resource competition;
-- saturating predation with per-tick prey safety cap;
-- bounded exponential population growth/decline;
-- conservative staged migration flux;
-- local/species extinction rules;
-- pressure ledger for player-facing causality;
-- systemic ecology Thread detectors;
-- mostly deterministic first ecology prototype;
-- controlled micro-scenarios and headless metrics before full procedural balancing.
+- local trait mean + variance lives at deme level;
+- ecology-derived fitness proxy drives selection;
+- generic finite-difference selection gradients replace pressure-specific mutation rules;
+- mutation replenishes heritable variation rather than directly moving trait means;
+- bottlenecks reduce variation;
+- controlled reproducible founder effects;
+- migration pools trait statistics and acts as gene flow;
+- same-species gene-flow graph defines evolutionary groups;
+- sustained isolation + trait/ecological divergence accumulates speciation progress;
+- reconnection can reverse incomplete divergence;
+- speciation creates deterministic lineage splits and durable causal history;
+- required micro-scenarios cover adaptation, barriers, reconnection, rescue, founder effects and clean speciation.
 
 ## Next work
 
-1. Review Ecology Loop v0.1.
-2. Define Evolution & Speciation v0.1.
-3. Define player interventions and Influence constraints.
-4. Define prototype success metrics and batch-run metrics across ecology + evolution.
+1. Review Evolution & Speciation v0.1.
+2. Define Player Influence & Intervention Economy v0.1.
+3. Define combined prototype success metrics and batch-run thresholds.
+4. Define causality/event attribution rules across player interventions and emergent outcomes.
 5. Only then evaluate engine/language options against requirements.
 
 ## Technical debt
