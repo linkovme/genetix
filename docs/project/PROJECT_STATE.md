@@ -80,34 +80,40 @@ Success means we can describe a 60–90 minute session from beginning to end and
 - Core gameplay loop strengthened around prediction → indirect action/inaction → autonomous consequence.
 - Systemic Threads introduced as a way to surface real emergent situations without scripted quests.
 
+## Recently completed
+
+- Session Arc v0.2 accepted and merged (PR #1).
+- Simulation Model v0.1 and World & Time Scale v0.1 accepted and merged (PR #3).
+- Reference model now uses configurable grid geography, sparse demes, deterministic staged updates, and a fixed 100-year initial tick hypothesis.
+
 ## Current design review
 
-Draft documents on branch `design/simulation-model-v0.1`:
+Draft document on branch `design/ecology-loop-v0.1`:
 
-- `docs/design/SIMULATION_MODEL.md`
-- `docs/design/WORLD_TIME_SCALE.md`
+- `docs/design/ECOLOGY_LOOP.md`
 
-Current proposed technical/game-model choices:
+Current ecology proposal:
 
-- regular configurable logical grid;
-- reference world size 64×64;
-- east/west wrapping, bounded north/south;
-- fixed simulation step, initial value 100 simulated years;
-- aggregated local populations ("demes") keyed by species + cell;
-- local evolving trait state lives at deme level;
-- sparse population storage;
-- staged/delta-based cross-cell updates;
-- first producer layer represented as biomass, not explicit plant individuals/species;
-- aquatic food web deferred while water remains meaningful geography.
+- producer biomass → herbivores → predators;
+- smooth climate suitability rather than hard biome gates;
+- stable producer regeneration toward environmental capacity;
+- deterministic resource competition;
+- saturating predation with per-tick prey safety cap;
+- bounded exponential population growth/decline;
+- conservative staged migration flux;
+- local/species extinction rules;
+- pressure ledger for player-facing causality;
+- systemic ecology Thread detectors;
+- mostly deterministic first ecology prototype;
+- controlled micro-scenarios and headless metrics before full procedural balancing.
 
 ## Next work
 
-1. Review Simulation Model v0.1 and World & Time Scale v0.1.
-2. Define the minimum ecology loop and formulas.
-3. Define evolution/speciation rules.
-4. Define player interventions and Influence constraints.
-5. Define prototype success metrics and batch-run metrics.
-6. Only then evaluate engine/language options against requirements.
+1. Review Ecology Loop v0.1.
+2. Define Evolution & Speciation v0.1.
+3. Define player interventions and Influence constraints.
+4. Define prototype success metrics and batch-run metrics across ecology + evolution.
+5. Only then evaluate engine/language options against requirements.
 
 ## Technical debt
 
