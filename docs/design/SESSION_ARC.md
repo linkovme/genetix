@@ -1,6 +1,6 @@
 # Session Arc v0.1
 
-Status: **Draft for product review**
+Status: **Draft v0.2 for product review**
 
 This document defines the first target play session for Genetix. It is intentionally concrete enough to drive simulation design, but values and timings remain hypotheses until prototype testing.
 
@@ -22,18 +22,30 @@ The world may continue beyond 90 minutes. The 60–90 minute arc is a minimum ta
 
 The player repeatedly moves through this loop:
 
-1. **Observe** — watch the world continue without input.
-2. **Notice pressure** — food shortage, climate mismatch, isolation, predation, overcrowding, migration opportunity, etc.
-3. **Understand** — inspect why a population is growing, shrinking, moving, or diverging.
-4. **Intervene indirectly** — modify environmental conditions or geography using a limited resource.
-5. **Advance time** — let the simulation respond.
-6. **Discover consequences** — colonization, adaptation, collapse, migration, speciation, extinction.
-7. **Build history** — the timeline and tree of life record important consequences.
-8. Return to observation.
+1. **Observe** — notice a meaningful change or emerging pressure.
+2. **Explain** — inspect the dominant causes behind it.
+3. **Predict** — form a hypothesis about what will happen next.
+4. **Commit** — intervene indirectly, or deliberately choose not to intervene.
+5. **Advance time** — let the autonomous simulation respond.
+6. **Compare** — see whether the prediction was confirmed, complicated, or disproved.
+7. **Record** — important consequences enter the world's history and lineage record.
+8. Return to observation with new information.
+
+The emotional unit of gameplay is therefore not "press button → receive reward." It is:
+
+> **I think this will happen → I change or preserve the conditions → the world answers me.**
 
 The player should never need to constantly click to keep the ecosystem alive.
 
-If the player puts the phone down for a short period while the simulation is running, the world should continue making meaningful progress.
+If the player stops touching the screen while the simulation is running, the world continues making meaningful progress. Observation is active because the player is choosing what to watch, what they think will happen, and whether an intervention is worth spending.
+
+### Predictions are lightweight
+
+The first version does not need a formal prediction minigame or betting system.
+
+A prediction can simply exist in the player's head, supported by UI that makes causes and trajectories visible. Later versions may allow the player to pin a species, region, or emerging situation to a watchlist.
+
+The design goal is cognitive participation, not extra button presses.
 
 ---
 
@@ -95,20 +107,22 @@ Influence exists to prevent the player from constantly correcting every unwanted
 Design goals:
 
 - interventions are meaningful decisions, not paintbrush spam;
-- the player sometimes must accept an extinction or ecological collapse;
-- there is enough time between major interventions for consequences to become visible;
-- waiting is not the primary gameplay.
+- the player sometimes must accept extinction, collapse, or an unwanted evolutionary direction;
+- there is enough consequence time between major interventions;
+- the resource must never turn the game into a real-time waiting timer;
+- the optimal strategy must not be "farm notifications/species to earn more buttons."
 
 Initial hypothesis:
 
 - Influence has a small cap;
-- it regenerates slowly and predictably;
-- major discoveries may grant small bonus amounts;
-- interventions have different costs depending on scale and duration.
+- large interventions cost meaningfully more than local nudges;
+- replenishment is tied primarily to simulation progress / world epochs rather than real-world clock waiting;
+- notable discoveries may occasionally grant a small bonus, but cannot become the dominant farming strategy;
+- choosing **not** to intervene is a legitimate strategic action because saved capacity remains valuable.
 
 Important rule:
 
-> Influence must not reward biodiversity so aggressively that the optimal strategy becomes farming species purely to buy more interventions.
+> Influence buys the right to alter conditions, never the right to dictate a biological outcome.
 
 Exact economy is deferred until the simulation exists.
 
@@ -135,11 +149,66 @@ Simulation correctness must not depend on render frame rate or selected presenta
 
 ---
 
+## 5.5. Emerging story threads
+
+The simulation should continuously detect a small number of **emerging situations worth watching**.
+
+Working name: **Threads**.
+
+Threads are not authored quests and do not force outcomes. They are summaries of real simulation states that already exist.
+
+Candidate examples:
+
+- a population is approaching a climate boundary;
+- two regional populations are losing gene flow and beginning to diverge;
+- a predator is following prey into a new region;
+- a lineage is trapped in a shrinking refuge;
+- a newly opened corridor may reconnect two populations;
+- rapid resource depletion is creating a local collapse risk;
+- an island population has become ecologically isolated.
+
+The player may pin a few Threads to follow.
+
+A Thread ends because the underlying simulation resolves it:
+
+- migration succeeds or fails;
+- populations reconnect;
+- divergence disappears;
+- speciation occurs;
+- a refuge stabilizes;
+- extinction occurs;
+- the situation becomes irrelevant.
+
+### Why Threads exist
+
+The autonomous world may contain hundreds of simultaneous numerical changes. The game needs to surface **interesting causality without scripting the world**.
+
+Threads provide:
+
+- a reason to keep watching;
+- natural short-term goals without conventional quests;
+- a bridge between raw simulation data and memorable history;
+- a cheap systemic source of variety because the same detectors work across all seeds.
+
+Threads must never invent a problem that is not present in the simulation.
+
+---
+
 ## 6. Starting state
 
 The session should begin with a world that is already alive enough to produce consequences quickly.
 
 The player should **not** spend ten minutes waiting for abiogenesis.
+
+The generated starting state should contain several **latent tensions** so that the first interesting question appears quickly without scripting a fixed tutorial event.
+
+Candidate latent tensions:
+
+- one population near the edge of its climate tolerance;
+- one possible migration corridor;
+- one geographically isolated or nearly isolated population;
+- one locally crowded/resource-constrained region;
+- at least two regions with meaningfully different ecological opportunities.
 
 A generated world contains:
 
@@ -531,6 +600,22 @@ A deep-detail/debug layer can exist separately.
 
 ## 17. Session pacing rules
 
+The minute ranges in this document are **soft pacing targets, not scripted event timers**.
+
+The simulation must not secretly force speciation at minute 30 or extinction at minute 60. Instead, world generation and starting conditions should make these outcomes reasonably likely across many runs.
+
+If a particular world does not produce an actual speciation in the target window, it should still expose a meaningful evolutionary trajectory—for example a strongly diverging population—so the core promise remains visible without falsifying the simulation.
+
+### Rule 0 — interest density
+
+The player should usually have:
+
+- at least one active Thread worth following;
+- at least one plausible future intervention;
+- at least one unresolved prediction.
+
+The game should avoid both dead air and notification spam.
+
 ### Rule A — something changes before the player gets bored
 
 At high simulation speed, the player should rarely wait more than roughly 30–90 real seconds without a visible change worth noticing.
@@ -609,6 +694,17 @@ Only notable events:
 - major intervention;
 - substantial climate/geology milestone.
 
+### Thread/watch panel
+
+A small optional panel for currently interesting situations:
+
+- what is happening;
+- why the system considers it notable;
+- what variables are currently driving it;
+- whether the player has pinned it.
+
+This panel does not prescribe a solution.
+
 ---
 
 ## 19. Prototype success criteria
@@ -630,6 +726,21 @@ A developer/player can inspect a major boom, collapse, migration, or speciation 
 ### Intervention consequence
 
 A small indirect intervention can create a measurable chain of consequences without guaranteeing a target species/outcome.
+
+### Cognitive engagement
+
+During a 20–30 minute observation sample, the player can repeatedly state a prediction or decision such as:
+
+- "I expect this population to migrate";
+- "I think these branches will diverge";
+- "I will save Influence and accept this collapse";
+- "I will change rainfall here and see whether prey expansion pulls the predator with it."
+
+If play consists mainly of waiting for alerts, the loop has failed.
+
+### Thread quality
+
+System-detected Threads correspond to real measurable state, resolve naturally, and help the player discover stories without becoming disguised quests.
 
 ### Loss
 
@@ -666,7 +777,21 @@ Any of these may become valuable later, but none should be allowed to delay proo
 
 ---
 
-## 21. Main unresolved design decisions
+## 21. Design decisions strengthened in v0.2
+
+The following direction is now preferred for subsequent M0 work:
+
+1. The fundamental gameplay unit is **prediction → indirect action/inaction → autonomous consequence**.
+2. The game should surface systemic **Threads** to solve the "interesting simulation but passive game" problem.
+3. Session timing is a set of soft probability/pacing targets, never hidden scripted timers.
+4. Influence must not use real-time waiting as its primary replenishment model.
+5. Starting worlds should contain latent tensions that create immediate questions without forcing identical openings.
+
+These remain subject to prototype validation, but subsequent design should assume them unless contradicted by testing.
+
+---
+
+## 22. Main unresolved design decisions
 
 The next design documents should resolve:
 
@@ -684,5 +809,8 @@ The next design documents should resolve:
 12. What is the first Influence economy?
 13. How much player causality should be visible versus inferred?
 14. What quantitative metrics distinguish "interesting instability" from broken simulation?
+15. Which Thread detectors are essential for the first playable?
+16. How many simultaneous Threads can the UI surface before they become noise?
+17. How exactly does Influence replenish from simulation progress without encouraging blind maximum-speed fast-forward?
 
 These questions define the remainder of M0.
