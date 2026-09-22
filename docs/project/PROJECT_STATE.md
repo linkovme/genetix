@@ -50,9 +50,9 @@ These are not yet final decisions:
 
 ## Unknowns that must be resolved before serious implementation
 
-- Exact first-session gameplay loop.
-- Time scale and simulation tick hierarchy.
-- Minimum viable environment variables.
+- Minimum viable ecology formulas and stability rules.
+- Validation of the proposed 100-year base tick through prototype behavior.
+- Validation of 64×64 as the reference world size through performance/legibility tests.
 - Minimum viable organism/species traits.
 - Food/energy model.
 - Population growth and carrying capacity model.
@@ -74,16 +74,40 @@ These are not yet final decisions:
 
 Success means we can describe a 60–90 minute session from beginning to end and specify a minimal headless simulation model clearly enough to implement without inventing core rules while coding.
 
+## Recently completed
+
+- Session Arc v0.2 accepted and merged (PR #1).
+- Core gameplay loop strengthened around prediction → indirect action/inaction → autonomous consequence.
+- Systemic Threads introduced as a way to surface real emergent situations without scripted quests.
+
+## Current design review
+
+Draft documents on branch `design/simulation-model-v0.1`:
+
+- `docs/design/SIMULATION_MODEL.md`
+- `docs/design/WORLD_TIME_SCALE.md`
+
+Current proposed technical/game-model choices:
+
+- regular configurable logical grid;
+- reference world size 64×64;
+- east/west wrapping, bounded north/south;
+- fixed simulation step, initial value 100 simulated years;
+- aggregated local populations ("demes") keyed by species + cell;
+- local evolving trait state lives at deme level;
+- sparse population storage;
+- staged/delta-based cross-cell updates;
+- first producer layer represented as biomass, not explicit plant individuals/species;
+- aquatic food web deferred while water remains meaningful geography.
+
 ## Next work
 
-1. Review and refine the 60–90 minute Session Arc v0.1 (Draft PR #1).
-2. Define simulation entities and ownership of state.
-3. Define world/time scales.
-4. Define minimum ecology loop.
-5. Define evolution/speciation loop.
-6. Define player interventions and constraints.
-7. Define prototype success metrics.
-8. Only then evaluate engine/language options against requirements.
+1. Review Simulation Model v0.1 and World & Time Scale v0.1.
+2. Define the minimum ecology loop and formulas.
+3. Define evolution/speciation rules.
+4. Define player interventions and Influence constraints.
+5. Define prototype success metrics and batch-run metrics.
+6. Only then evaluate engine/language options against requirements.
 
 ## Technical debt
 
