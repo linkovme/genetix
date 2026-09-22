@@ -88,7 +88,13 @@ Do not reconstruct missing facts from assumptions when they can be read from thi
 
 ## 7. Human-facing project mirror
 
-A Google Sheets project dashboard is planned as the human-readable operational mirror: roadmap, current sprint, backlog, systems, balance, decisions, bugs, risks, monetization, and versions.
+The live Google Sheets project dashboard is:
+
+https://docs.google.com/spreadsheets/d/11K6wY7k0JaI6m3tdTy2kPH582qdHVOjThzKkeH19kLk/edit
+
+It contains the human-readable operational mirror: Dashboard, START HERE, roadmap, current sprint, backlog, systems, decisions, risks, monetization, and versions.
+
+The `START HERE` sheet contains the permanent message the project owner can paste into a completely new ChatGPT conversation.
 
 GitHub remains authoritative for technical/design truth. The Sheet exists to make project status easy to understand at a glance.
 

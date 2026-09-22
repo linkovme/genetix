@@ -33,7 +33,7 @@ The world should continue to produce meaningful ecological and evolutionary chan
 - Multithreading readiness, without premature parallelism.
 - Persistent project context must live outside chat.
 - GitHub is technical/design source of truth.
-- A Google Sheets human-facing project mirror is required.
+- The live Google Sheets human-facing project mirror is maintained alongside GitHub: https://docs.google.com/spreadsheets/d/11K6wY7k0JaI6m3tdTy2kPH582qdHVOjThzKkeH19kLk/edit
 - Monetization direction: optional rewarded ads.
 
 ## Important current hypotheses
@@ -76,7 +76,7 @@ Success means we can describe a 60–90 minute session from beginning to end and
 
 ## Next work
 
-1. Design the 60–90 minute session arc.
+1. Review and refine the 60–90 minute Session Arc v0.1 (Draft PR #1).
 2. Define simulation entities and ownership of state.
 3. Define world/time scales.
 4. Define minimum ecology loop.
